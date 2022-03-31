@@ -19,8 +19,23 @@ public class Hash {
 	public static BigInteger hashOf(String entity) {		
 		
 		// Task: Hash a given string using MD5 and return the result as a BigInteger.
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			
+			byte[] digest = md.digest(entity.getBytes("utf8"));
+			
+			int mbit = 4;
+			mbit = digest.length*8;
+			
+			String hex;
+			
+		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		// we use MD5 with 128 bits digest
+		
 		
 		// compute the hash of the input 'entity'
 		
