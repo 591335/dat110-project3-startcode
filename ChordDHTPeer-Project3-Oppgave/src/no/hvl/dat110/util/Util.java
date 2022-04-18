@@ -38,13 +38,27 @@ public class Util {
 	 */
 	public static boolean computeLogic(BigInteger id, BigInteger lower, BigInteger upper) {
 		
+		boolean cond = false; // <- return boolean verdi
+		BigInteger address = Hash.addressSize(); // <- address size
+		BigInteger upper2 = upper; // <- ekstra upper attributt
+		
 		// a formula to check whether an id falls within the set {lower, upper} using the address size as our bound (modulos operation)
+		if (lower.compareTo(upper) == 1) { // <- Hvis lower er større enn upper
+			upper2 = upper.add(address); // <- legger til adresse størrelsen som ny upper
+			
+			if((id.compareTo(new BigInteger("0"))==1 || id.compareTo(new BigInteger("0"))==0) && //Hvis id er større eller lik 0  
+					((id.compareTo(upper)==-1 || id.compareTo(upper)==0))) { 					 //Og mindre eller lik "upper"
+				id = id.add(address);															 //Legger til addresse størrelsen til id
+			}
+		}
+		
 		// it modifies 'upper' and 'id' when lower > upper e.g. set (6, 2) in mod 10 = {6, 7, 8, 9, 0, 1, 2}
+		upper = upper2; // <- Endrer upper til ny verdi, hvis gammel upper var mindre enn lower sin verdi
+		cond = (id.compareTo(lower)==1 || id.compareTo(lower)==0) && (id.compareTo(upper)==-1 || id.compareTo(upper)==0); 
+		// Boolean cond blir true hvis id er større eller lik lower og mindre eller like upper
 		
-		// implement: read the descriptions above
-		boolean cond = false;
-
-		
+	
+		// implement: read the descriptions above	
 		return cond;
 	}
 	
