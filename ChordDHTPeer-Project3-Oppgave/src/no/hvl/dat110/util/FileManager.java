@@ -56,7 +56,7 @@ public class FileManager {
 	public void createReplicaFiles() {
 	 	
 		// implement
-		for (int i = 0; i < numReplicas; i++) {	// set a loop where size = numReplicas
+		for (int i = 0; i < Util.numReplicas; i++) {	// set a loop where size = numReplicas
 			
 			String ny = filename+i; // replicate by adding the index to filename
 			
